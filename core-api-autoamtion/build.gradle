@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.qaacademy.module4.automation'
+group 'com.qaacademy.module4.automation.core.api'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,6 +10,10 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.rest-assured:rest-assured:5.1.1'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'com.jayway.jsonpath:json-path:2.7.0'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
