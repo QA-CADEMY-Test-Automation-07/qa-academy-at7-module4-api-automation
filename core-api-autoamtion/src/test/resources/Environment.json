@@ -18,8 +18,8 @@
               "Users": [
                 {
                   "Type": "API-TOKEN-AUTO",
-                  "Key": "5542bb122572b0a33d33fc15891f1a43",
-                  "Token": "ATTAf525f4a28dfaeb036832f3d3fa84babd06f93fd6b8654f7e6f8a297273d2a2aeD0BCF9C5"
+                  "Key": "",
+                  "Token": ""
                 },
                 {
                   "Type": "API-TOKEN-AUTO-GOOGLE",
