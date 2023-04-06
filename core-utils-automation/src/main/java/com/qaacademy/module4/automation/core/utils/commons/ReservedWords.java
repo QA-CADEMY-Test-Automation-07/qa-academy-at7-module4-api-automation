@@ -1,4 +1,4 @@
-package com.qaacademy.module4.automation.core.api.utils.commons;
+package com.qaacademy.module4.automation.core.utils.commons;
 
 /**
  * Custom reserved words enum.

@@ -1,6 +1,7 @@
 package com.qaacademy.module4.automation.core.api.client.validators;
 
-import com.qaacademy.module4.automation.core.api.utils.json.JsonPath;
+
+import com.qaacademy.module4.automation.core.utils.json.JsonPath;
 
 public final class RequestManagerValidator {
 
@@ -16,5 +17,9 @@ public final class RequestManagerValidator {
 
     public static String getBoardName(String json) {
         return JsonPath.getResult(json, "$.name");
+    }
+
+    public static String getId(String json) {
+        return JsonPath.getResult(json, "$.id");
     }
 }

@@ -91,4 +91,62 @@ public class RequestManagerTest {
                         String.format("Response body does not contain '%s' string. Response body: %s", boardName, apiResponse.getBody()))
         );
     }
+
+    @Test
+    @DisplayName("Verifies if PUT method call correctly")
+    public void verifiesIfPutMethodCallCorrectly() {
+        // Given
+        var id = createBoard("Automation-test-025");
+
+        // When
+        var endpoint = url.concat("1/boards/".concat(id));
+        final String boardNamePut = "Automation-test-025-updated";
+        var body = """
+                {
+                    "name" : "%s"
+                }""";
+        apiRequest.setBody(String.format(body, boardNamePut));
+        final ApiResponse apiResponsePut = RequestManager.put(apiRequest, endpoint);
+
+        // Then
+        Assertions.assertEquals(STATUS_CODE_SUCCESS, apiResponsePut.getStatusCode(),
+                String.format("Response status code is not 200. Response status cade: %s", apiResponsePut.getStatusCode()));
+        Assertions.assertAll(
+                () -> Assertions.assertTrue(apiResponsePut.getBody().contains("comments"),
+                        String.format("Response body does not contain 'comments' string. Response body: %s", apiResponsePut.getBody())),
+                () -> Assertions.assertEquals(boardNamePut, RequestManagerValidator.getBoardName(apiResponsePut.getBody()),
+                        String.format("Response body does not contain '%s' string. Response body: %s", boardNamePut, apiResponsePut.getBody()))
+        );
+    }
+
+    @Test
+    @DisplayName("Verifies if DELETE method call correctly")
+    public void verifiesIfDeleteMethodCallCorrectly() {
+        // Given
+        var id = createBoard("Automation-test-02");
+
+        // When
+        var endpoint = url.concat("1/boards/".concat(id));
+        var apiResponse = RequestManager.delete(apiRequest, endpoint);
+
+        // Then
+        Assertions.assertEquals(STATUS_CODE_SUCCESS, apiResponse.getStatusCode(),
+                String.format("Response status code is not 200. Response status cade: %s", apiResponse.getStatusCode()));
+        Assertions.assertTrue(apiResponse.getBody().contains("{\"_value\":null}"),
+                String.format("Response body does not contain '{\"_value\":null}' string. Response body: %s", apiResponse.getBody()));
+    }
+
+    private String createBoard(final String boardName) {
+        var endpoint = url.concat("1/boards");
+        var body = """
+                {
+                    "name" : "%s"
+                }""";
+        apiRequest.setParams(params);
+        apiRequest.setHeaders(headers);
+        apiRequest.setBody(String.format(body, boardName));
+        ApiResponse apiResponse = RequestManager.post(apiRequest, endpoint);
+
+        return RequestManagerValidator.getId(apiResponse.getBody());
+    }
 }

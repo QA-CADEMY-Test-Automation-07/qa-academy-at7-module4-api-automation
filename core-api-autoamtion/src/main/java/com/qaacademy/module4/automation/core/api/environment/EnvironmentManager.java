@@ -10,8 +10,9 @@ import static com.qaacademy.module4.automation.core.api.environment.EnvironmentW
 import static com.qaacademy.module4.automation.core.api.environment.EnvironmentWords.API_VERSION_NAME;
 import static com.qaacademy.module4.automation.core.api.environment.EnvironmentWords.ENVIRONMENT_NAME;
 import static com.qaacademy.module4.automation.core.api.environment.EnvironmentWords.ENVIRONMENT_PATH;
-import static com.qaacademy.module4.automation.core.api.utils.json.JsonFileReader.loadJsonObjectFromFile;
-import static com.qaacademy.module4.automation.core.api.utils.json.JsonPath.getResults;
+import static com.qaacademy.module4.automation.core.utils.json.JsonFileReader.loadJsonObjectFromFile;
+import static com.qaacademy.module4.automation.core.utils.json.JsonPath.getResults;
+
 
 public final class EnvironmentManager {
     public static final String ENVIRONMENTS_NAME_FILTER = "$.Environments[?(@.Name == '%s')]";

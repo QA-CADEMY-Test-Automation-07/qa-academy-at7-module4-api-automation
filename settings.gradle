@@ -1,3 +1,5 @@
 rootProject.name = 'qa-academy-at7-module4-api-automation'
 include 'core-api-autoamtion'
+include 'core-utils-automation'
+include 'trello-api-autoamtion'
 
