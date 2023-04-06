@@ -33,4 +33,27 @@ public final class RequestManager {
 
         return new ApiResponse(response);
     }
+
+    public static ApiResponse put(ApiRequest apiRequest, String endpoint) {
+        Response response = RestAssured
+                .given()
+                .when()
+                .headers(apiRequest.getHeaders())
+                .queryParams(apiRequest.getQueryParams())
+                .body(apiRequest.getBody())
+                .put(endpoint);
+
+        return new ApiResponse(response);
+    }
+
+    public static ApiResponse delete(ApiRequest apiRequest, String endpoint) {
+        Response response = RestAssured
+                .given()
+                .when()
+                .headers(apiRequest.getHeaders())
+                .queryParams(apiRequest.getQueryParams())
+                .body(apiRequest.getBody())
+                .delete(endpoint);
+        return new ApiResponse(response);
+    }
 }

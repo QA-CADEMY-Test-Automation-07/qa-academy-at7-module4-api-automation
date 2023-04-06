@@ -1,6 +1,6 @@
-package com.qaacademy.module4.automation.core.api.utils.json;
+package com.qaacademy.module4.automation.core.utils.json;
 
-import com.qaacademy.module4.automation.core.api.utils.commons.ReservedWords;
+import com.qaacademy.module4.automation.core.utils.commons.ReservedWords;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;

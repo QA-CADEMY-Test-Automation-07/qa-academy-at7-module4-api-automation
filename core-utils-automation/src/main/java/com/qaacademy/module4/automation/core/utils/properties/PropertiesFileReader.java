@@ -1,6 +1,6 @@
-package com.qaacademy.module4.automation.core.api.utils.properties;
+package com.qaacademy.module4.automation.core.utils.properties;
 
-import com.qaacademy.module4.automation.core.api.utils.commons.ReservedWords;
+import com.qaacademy.module4.automation.core.utils.commons.ReservedWords;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

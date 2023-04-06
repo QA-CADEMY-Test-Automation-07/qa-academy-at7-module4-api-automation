@@ -1,4 +1,4 @@
-package com.qaacademy.module4.automation.core.api.utils.json;
+package com.qaacademy.module4.automation.core.utils.json;
 
 import com.jayway.jsonpath.PathNotFoundException;
 import org.json.simple.JSONObject;

@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.qaacademy.module4.automation.trello.api'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":core-api-autoamtion")
+    implementation project(":core-utils-automation")
+    implementation 'io.cucumber:cucumber-java:7.11.2'
+    implementation 'io.cucumber:cucumber-gherkin:7.11.2'
+
+    testImplementation 'io.cucumber:cucumber-junit:7.11.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation project(path: ':core-api-autoamtion')
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
