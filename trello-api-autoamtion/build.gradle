@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version "2.11.2"
 }
 
 group 'com.qaacademy.module4.automation.trello.api'
@@ -14,12 +15,30 @@ dependencies {
     implementation project(":core-utils-automation")
     implementation 'io.cucumber:cucumber-java:7.11.2'
     implementation 'io.cucumber:cucumber-gherkin:7.11.2'
-
+    implementation 'io.qameta.allure:allure-cucumber7-jvm:2.21.0'
     implementation 'io.cucumber:cucumber-testng:7.11.2'
+
+    testImplementation 'org.slf4j:slf4j-simple:2.0.7'
     testImplementation 'io.cucumber:cucumber-picocontainer:7.11.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 }
 
 test {
     useTestNG()
+}
+
+tasks.register("executeFeature", Test) {
+    systemProperties(System.getProperties())
+    outputs.upToDateWhen { false }
+    useTestNG()
+    scanForTestClasses = false
+    options {
+        useDefaultListeners = false
+        jvmArgs = ["-Dcucumber.features=${rootProject.rootDir}/trello-api-autoamtion/src/test/resources/features/"]
+        jvmArgs = ["-Dcucumber.plugin=pretty," +
+                           "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"]
+        jvmArgs = ["-Dcucumber.filter.tags=" + System.getProperty("cucumberTags")]
+        jvmArgs = ["-DenvironmentName=" + environmentName]
+        testLogging.showStandardStreams = true
+    }
 }
