@@ -5,6 +5,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -14,6 +15,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 @DisplayName("Rest Assured")
 @Tag("UnitTest")
@@ -118,5 +121,29 @@ public class RestAssuredTest {
         var statusCodeActual = response.getStatusCode();
 
         Assertions.assertEquals(statusCodeExpected, statusCodeActual);
+    }
+
+    @Test
+    public void testTrelloWhitJsonSchema() {
+        var endpoint = "/1/boards";
+        var boardName = "Automation-test-01";
+        var body = """
+                {
+                    "name" : "%s"
+                }
+                """;
+        RestAssured
+                .given()
+                .spec(requestSpecification)
+                .log().all()
+                .when()
+                .header("Content-Type", "application/json")
+                .queryParam("key", key)
+                .queryParam("token", token)
+                .body(String.format(body, boardName))
+                .post(endpoint)
+                .then()
+                .spec(responseSpecification)
+                .body(JsonSchemaValidator.matchesJsonSchema(new File("./src/test/resources/schemas/schemastest.json")));
     }
 }
